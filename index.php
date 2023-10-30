@@ -1,13 +1,8 @@
-<?php 
 
-include 'function.php';
-
-$query = mysqli_query($conn, "SELECT * FROM product");
-$page = 'Home';
-
-?>
-
-  <?php include 'headindex.php'; ?>
+  <?php $page = 'Home';
+   include 'headindex.php'; 
+    $result = query("SELECT * FROM product");
+    ?>
 
     <!-- slider section -->
 
@@ -119,7 +114,7 @@ $page = 'Home';
       </div>
       <!-- Looping Product! -->
       <div class="row">
-      <?php foreach($query as $data) : ?>
+      <?php foreach($result as $data) : ?>
         <div class="col-sm-6 col-md-4 col-lg-3">        
           <div class="box">
             <a href="">

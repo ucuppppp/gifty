@@ -41,6 +41,7 @@
   font-family: 'Montserrat',sans-serif;
 }
 .field{
+  margin-bottom: 20px;
   position: relative;
   height: 45px;
   width: 100%;

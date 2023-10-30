@@ -1,3 +1,10 @@
+<?php 
+session_start();
+include 'function.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -68,12 +75,21 @@
             </li>
           </ul>
           <div class="user_option">
+            <?php if(isset($_SESSION['login'])) : ?>
+            <a href="?logout=1">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span>
+                <?= $_SESSION['name']; ?>
+              </span>
+            </a>
+            <?php else : ?>
             <a href="/login/">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>
                 Login
               </span>
             </a>
+            <?php endif; ?>
             <a href="">
               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             </a>

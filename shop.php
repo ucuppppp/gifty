@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include 'function.php';
 
 $query = mysqli_query($conn, "SELECT * FROM product");

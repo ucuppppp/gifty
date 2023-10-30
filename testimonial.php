@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'function.php';
 $page = 'Testimonial';
 include 'header.php';

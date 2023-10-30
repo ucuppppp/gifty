@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(to right, #ff6b6b, #ff94c2);
+    background-image: url('img/bg4.jpg'); /* Ganti dengan nama gambar latar belakang yang sesuai */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blur: blur(10px); /* Menambahkan efek blur ke latar belakang */
+}
+
+.container {
+    text-align: center;
+}
+
+/* ... sisa kode CSS Anda ... */
+
+
+.glassmorphism-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 230px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.register-box {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+h2 {
+    color: #ff94c2;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    color: #ff6b6b;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #ff94c2;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff6b6b;
+}
+
+small {
+    margin-top: 10px;
+}
