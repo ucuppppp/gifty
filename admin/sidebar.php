@@ -1,4 +1,4 @@
-<?php 
+<?php
 $page = 'Admin';
 include '../function.php'
 
@@ -19,6 +19,7 @@ include '../function.php'
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -37,10 +38,10 @@ include '../function.php'
     -->
             <div class="sidebar-wrapper">
                 <div class="logo" style="display: flex; align-items:center; text-align:center; cursor:pointer;">
-                <a href="../index.php">
-                    <img src="../images/favicon.png" alt="" style="width: 40px;"> 
-                </a>
-                        <a href="../index.php" class="simple-text" style="display: inline-block; margin-left: 30px;">
+                    <a href="../index.php">
+                        <img src="../images/favicon.png" alt="" style="width: 40px;">
+                    </a>
+                    <a href="../index.php" class="simple-text" style="display: inline-block; margin-left: 30px;">
                         Giftyy
                     </a>
                 </div>
@@ -56,7 +57,7 @@ include '../function.php'
                             <i class="nc-icon nc-notes"></i>
                             <p>Table List</p>
                         </a>
-                    </li> 
+                    </li>
                 </ul>
             </div>
         </div>
@@ -64,15 +65,15 @@ include '../function.php'
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/"><?= $page; ?></a>     
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">             
+                    <a class="navbar-brand" href="/"><?= $page; ?></a>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
                                     <span class="no-icon"><?= $_SESSION['name']; ?></span>
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="?logout=1" onclick="confirm('Yakin ingin logout')">
                                     <span class="no-icon">Log out</span>
