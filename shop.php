@@ -26,9 +26,9 @@ include 'header.php';
       <?php foreach($query as $data) : ?>
         <div class="col-sm-6 col-md-4 col-lg-3">        
           <div class="box">
-            <a href="">
+            <a href="product/?id=<?= $data['id']; ?>">
               <div class="img-box">
-                <img src="images/<?= $data['image']; ?>" alt="">
+                <img src="images/<?= $data['image']; ?>" alt="img">
               </div>
               <div class="detail-box">             
                 <h6>
