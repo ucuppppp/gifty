@@ -3,13 +3,8 @@
                     <nav>
                         <ul class="footer-menu">
                             <li>
-                                <a href="#">
+                                <a href="../">
                                     Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
                                 </a>
                             </li>
                             <li>
@@ -28,7 +23,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a href="../">Giftyy</a>, made with love ❤❤❤
                         </p>
                     </nav>
                 </div>

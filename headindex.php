@@ -3,6 +3,7 @@ session_start();
 include 'function.php';
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -75,21 +76,30 @@ include 'function.php';
             </li>
           </ul>
           <div class="user_option">
-            <?php if(isset($_SESSION['login'])) : ?>
-            <a href="?logout=1">
+            <?php if(!isset($_SESSION['login'])) { ?>
+              <a href="login/">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span>
+                Login
+              </span>
+            </a>
+            <?php } else { ?>
+            <?php if(isset($_SESSION['login']) && $_SESSION['roleId'] == 1) : ?>
+            <a href="admin/">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>
                 <?= $_SESSION['name']; ?>
               </span>
             </a>
             <?php else : ?>
-            <a href="/login/">
+            <a href="profile/">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>
-                Login
+              <?= $_SESSION['name']; ?>
               </span>
             </a>
             <?php endif; ?>
+            <?php } ?>
             <a href="">
               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             </a>

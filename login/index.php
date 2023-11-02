@@ -19,7 +19,12 @@ if(isset($_POST['login'])) {
        if (password_verify($password, $row['password'])) {
         $_SESSION["login"] = true;
         $_SESSION['name'] = $row['nameUser'];
+        $_SESSION['username'] = $row['userName'];
         $_SESSION['roleId'] = $row['roleId'];
+        $_SESSION['bio'] = $row['bio'];
+        if ($_SESSION['roleId'] == 1) {
+        header('Location: ../admin/');
+        }
         header('Location: ../index.php');
        }
     } 
