@@ -92,4 +92,22 @@ if(isset($_GET['logout'])) {
   
   }
 
+if(isset($_GET['deleteproduct'])) {
+    $id = $_GET['deleteproduct'];
+    $result = mysqli_query($conn,"DELETE FROM product WHERE idProduct = '$id'");
+    if($result) {
+        echo "<script>
+             alert('data berhasil di hapus')
+             document.location.href = 'table.php'
+             </script>";
+    } else {
+            echo "<script>
+                 alert('data gagal di hapus')
+                 document.location.href = 'table.php'
+                 </script>";
+            }
+    }
+    
+
+
 ?>

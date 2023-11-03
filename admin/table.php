@@ -31,8 +31,8 @@ $query = query("SELECT * FROM product INNER JOIN type ON type.typeID = product.i
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Striped Table with Hover</h4>
-                        <p class="card-category">Here is a subtitle for this table</p>
+                        <h4 class="card-title">Data Product Giftyy</h4>
+                        <p class="card-category">harap teliti dalam mengelola barang!</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
                         <table class="table table-hover table-striped">
@@ -45,20 +45,20 @@ $query = query("SELECT * FROM product INNER JOIN type ON type.typeID = product.i
                                 <th>Action</th>
                             </thead>
                             <tbody>
-                                <?php foreach ($query as $data) : ?>
+                                <?php $i = 1; foreach ($query as $data) : ?>
                                     <tr>
-                                        <td><?= $i = 1; ?></td>
+                                        <td><?= $i++ ?></td>
                                         <td><?= $data['productName']; ?></td>
                                         <td><?= $data['typeName']; ?></td>
                                         <td>Rp.<?= singkat_angka($data['price']); ?></td>
                                         <td><?= $data['description']; ?></td>
                                         <td>
-                                            <a href=""><button><i class="bi bi-eye"></i></button></a>
-                                            <a href="edit.php"><button><i class="bi bi-pen"></i></button></a>
-                                            <a href="?deletecatalog=<?= $data['idProduct']; ?>" onclick="confirm('Yakin akan menghapus ini?')"><button><i class="bi bi-trash3"></i></button></a>
+                                            <a href="../product/?id=<?= $data['idProduct']; ?>"><button><i class="bi bi-eye"></i></button></a>
+                                            <a href="edit.php?id=<?= $data['idProduct']; ?>"><button><i class="bi bi-pen"></i></button></a>
+                                            <a href="?deleteproduct=<?= $data['idProduct']; ?>" onclick="return confirm('Yakin akan menghapus ini?')"><button><i class="bi bi-trash3"></i></button></a>
                                         </td>
                                     </tr>
-                                <?php $i + 1;
+                                <?php
                                 endforeach; ?>
                             </tbody>
                         </table>

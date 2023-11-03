@@ -6,8 +6,8 @@ include '../function.php';
 $id = $_GET['id'];
 
 $query = "SELECT * FROM product
-      INNER JOIN type ON product.typeId = type.idType
-      WHERE product.id = '$id'";
+      INNER JOIN type ON product.idType = type.typeId
+      WHERE product.idProduct = '$id'";
 
 $result = mysqli_query($conn, $query);
 
