@@ -1,3 +1,13 @@
+<?php
+
+
+if ($_SESSION['roleId'] != 1 || !isset($_SESSION['login'])) {
+    header('Location: ../');
+}
+
+
+?>
+
 <footer class="footer">
                 <div class="container-fluid">
                     <nav>

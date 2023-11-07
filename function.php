@@ -1,5 +1,8 @@
 <?php
 
+require 'app/app.php';
+
+
 $conn = mysqli_connect('localhost', 'root', '', 'giftshop') or die;
 
 function query($query)
@@ -46,7 +49,7 @@ function logout($data)
 {
     session_unset();
     session_destroy();
-    header('Location: __DIR__/login/');
+    header('Location:'. APP_PATH .'login/');
 }
 
 function registration($data)
@@ -109,3 +112,60 @@ if (isset($_GET['deleteproduct'])) {
                  </script>";
     }
 }
+
+function edit($data) {
+    global $conn;
+    $id = htmlspecialchars($_GET['id']);
+    if(isset($data['image'])){
+        $image = htmlspecialchars($data['image']);
+    } else {
+        $image = NULL;
+    }
+    $name = htmlspecialchars($data['name']);
+    $type = htmlspecialchars($data['type']);
+    if(is_numeric($data['price']) == true) {
+        $price = htmlspecialchars($data['price']);
+    } else {
+        echo "<script>
+            alert('harga harus diisi dengan angka');
+            document.location.href = 'edit.php'
+            </script>";
+    }
+    $description = htmlspecialchars($data['description']);
+
+    mysqli_query($conn,"UPDATE product SET
+            image=$image,
+            productName='$name',
+            idType='$type',
+            price='$price',
+            description='$description'
+            WHERE idProduct = '$id'");
+
+    return mysqli_affected_rows($conn);
+}
+
+function add($data) {
+    global $conn;
+    $image = htmlspecialchars($data['image']);
+    $name = htmlspecialchars($data['name']);
+    $type = htmlspecialchars($data['type']);
+    $description = htmlspecialchars($data['description']);
+    if(is_numeric($data['price']) == true) {
+        $price = htmlspecialchars($data['price']);
+    } else {
+        echo "<script>
+            alert('harga harus diisi dengan angka');
+            document.location.href = 'add.php'
+            </script>";
+    }
+   
+    $description = htmlspecialchars($data['description']);
+
+    $query = "INSERT INTO product
+    VALUES ( NULL, '$name', '$type', '$description', '$price',  '$image')";
+
+
+    mysqli_query ($conn, $query);
+
+    return mysqli_affected_rows($conn);
+} 

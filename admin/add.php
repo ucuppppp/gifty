@@ -1,28 +1,24 @@
 
 <?php 
 session_start();
-$page = 'Edit';
+$page = 'Add';
 include '../function.php';
 
 if ($_SESSION['roleId'] != 1 || !isset($_SESSION['login'])) {
     header('Location: ../');
 }
 
-$id = $_GET['id'];
-
-$query1 = query("SELECT * FROM product WHERE idProduct = '$id'");
-
 
 
 if(isset($_POST['submit'])) {
-    if(edit($_POST) > 0) {
+    if(add($_POST) > 0) {
         echo "<script>
-            alert('data berhasil diedit!');
+            alert('data berhasil ditambahkan!');
             document.location.href = '../';
             </script>";
     } else {
         echo "<script>
-            alert('data gagal diedit!');
+            alert('data gagal ditambahkan!')
             </script>";
     }
 }
@@ -38,14 +34,12 @@ if(isset($_POST['submit'])) {
     <style>
         body {
             background-color: #f89cab;
-            text-align: center;
         }
         .container {
             height: 500px;
             padding: 20px;
             display: flex;
             justify-content: center;
-            text-align: start;
 
         }
 
@@ -62,14 +56,13 @@ if(isset($_POST['submit'])) {
 </head>
 <body>
 
-    <h1>Edit </h1>
+    <h1>Tambah </h1>
     <div class="container">
         <table>
-            <?php foreach($query1 as $data1) { ?>
         <form action="" method="post">
             <tr>
                 <td></td>
-                <td><img src="<?= APP_PATH."images/".$data1['image']?>" alt="" width="200"></td>
+                <td></td>
             </tr>
             <tr>
                 <td></td>
@@ -77,7 +70,7 @@ if(isset($_POST['submit'])) {
             </tr>
         <tr>
             <td><label for="name">Nama : </label></td>
-            <td><input name="name" id="name" type="text" value="<?= $data1['productName']; ?>"></td>
+            <td><input name="name" id="name" type="text"></td>
         </tr>
         <tr>
             <td><label for="type">Type : </label></td>
@@ -85,7 +78,7 @@ if(isset($_POST['submit'])) {
                 <select name="type" id="type">
                     <?php $query2 = query("SELECT * FROM type");
                           foreach($query2 as $data2) :?>
-                    <option <?php if($data1['idType'] == $data2['typeId']) : ?> selected <?php endif; ?> value="<?= $data2['typeId']; ?>">
+                    <option value="<?= $data2['typeId']; ?>">
                             <?= $data2['typeName']; ?>
                     </option>
                     <?php endforeach; ?>
@@ -94,18 +87,17 @@ if(isset($_POST['submit'])) {
         </tr>    
         <tr>
             <td><label for="price">Price : </label></td>
-            <td><input name="price" id="price" type="text" value="<?= $data1['price']; ?>"></td>
+            <td><input name="price" id="price" type="text" ></td>
         </tr>    
         <tr>
             <td><label for="description">Description : </label></td>
-            <td><textarea name="description" id="description"><?= $data1['description']; ?></textarea></td>
+            <td><textarea name="description" id="description"></textarea></td>
         </tr>
         <tr>
             <td></td>
-            <td><button type="submit" name="submit" id="submit">Edit!</button></td>
+            <td><button type="submit" name="submit" id="submit">Tambah!</button></td>
         </tr>    
         </form>
-        <?php } ?>
         </table>
     </div>
 </body>

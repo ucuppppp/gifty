@@ -15,8 +15,10 @@
 
 
 <?php
-session_start();
+
 include 'sidebar.php';
+
+
 
 $query = query("SELECT * FROM product INNER JOIN type ON type.typeID = product.idType")
 

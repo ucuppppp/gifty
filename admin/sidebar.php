@@ -1,8 +1,11 @@
 <?php
+session_start();
 $page = 'Admin';
-include '../function.php'
+include '../function.php';
 
-
+if ($_SESSION['roleId'] != 1 || !isset($_SESSION['login'])) {
+    header('Location: ../');
+}
 
 ?>
 
@@ -48,7 +51,7 @@ include '../function.php'
                 </div>
                 <ul class="nav">
                     <li>
-                        <a class="nav-link" href="../">
+                        <a class="nav-link" href="../admin/">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>User Profile</p>
                         </a>
