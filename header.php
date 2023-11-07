@@ -48,41 +48,50 @@
             <li class="nav-item ">
               <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item <?php if($page == 'Shop') : ?> active <?php endif; ?>">
+            <li class="nav-item <?php if ($page == 'Shop') : ?> active <?php endif; ?>">
               <a class="nav-link" href="shop.php">
                 Shop
               </a>
             </li>
-            <li class="nav-item <?php if($page == 'Why') : ?> active <?php endif; ?>">
+            <li class="nav-item <?php if ($page == 'Why') : ?> active <?php endif; ?>">
               <a class="nav-link" href="why.php">
                 Why Us
               </a>
             </li>
-            <li class="nav-item <?php if($page == 'Testimonial') : ?> active <?php endif; ?>">
+            <li class="nav-item <?php if ($page == 'Testimonial') : ?> active <?php endif; ?>">
               <a class="nav-link" href="testimonial.php">
                 Testimonial
               </a>
             </li>
-            <li class="nav-item <?php if($page == 'Contact') : ?> active <?php endif; ?>">
+            <li class="nav-item <?php if ($page == 'Contact') : ?> active <?php endif; ?>">
               <a class="nav-link" href="contact.php">Contact Us</a>
             </li>
           </ul>
           <div class="user_option">
-            <?php if(isset($_SESSION['login'])) : ?>
-            <a href="?logout=1">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <span>
-                <?= $_SESSION['name']; ?>
-              </span>
-            </a>
-            <?php else : ?>
-            <a href="/login/">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <span>
-                Login
-              </span>
-            </a>
-            <?php endif; ?>
+            <?php if (!isset($_SESSION['login'])) { ?>
+              <a href="login/">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>
+                  Login
+                </span>
+              </a>
+            <?php } else { ?>
+              <?php if (isset($_SESSION['login']) && $_SESSION['roleId'] == 1) : ?>
+                <a href="admin/">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span>
+                    <?= $_SESSION['name']; ?>
+                  </span>
+                </a>
+              <?php else : ?>
+                <a href="profile/">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span>
+                    <?= $_SESSION['name']; ?>
+                  </span>
+                </a>
+              <?php endif; ?>
+            <?php } ?>
             <a href="">
               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             </a>

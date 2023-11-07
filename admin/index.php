@@ -12,56 +12,61 @@
 =========================================================
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
-<?php 
+<?php
 session_start();
+
+if ($_SESSION['roleId'] != 1 || !isset($_SESSION['login'])) {
+    header('Location: ../');
+}
+
 ?>
 
-    <?php include 'sidebar.php' ?>
-            <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card card-user">
-                                <div class="card-image">
-                                    <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
-                                </div>
-                                <div class="card-body">
-                                    <div class="author">
-                                        <a href="#">
-                                            <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="...">
-                                            <h5 class="title"><?= $_SESSION['name'] ?></h5>
-                                        </a>
-                                        <p class="description">
-                                            <?= $_SESSION['username']; ?>
-                                        </p>
-                                    </div>
-                                    <p class="description text-center">
-                                        <?= $_SESSION['bio']; ?>
-                                    </p>
-                                </div>
-                                <hr>
-                                <div class="button-container mr-auto ml-auto">
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-facebook-square"></i>
-                                    </button>
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </button>
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-google-plus-square"></i>
-                                    </button>
-                                </div>
-                            </div>
+<?php include 'sidebar.php' ?>
+<!-- End Navbar -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="card-image">
+                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="...">
+                                <h5 class="title"><?= $_SESSION['name'] ?></h5>
+                            </a>
+                            <p class="description">
+                                <?= $_SESSION['username']; ?>
+                            </p>
                         </div>
+                        <p class="description text-center">
+                            <?= $_SESSION['bio']; ?>
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="button-container mr-auto ml-auto">
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-facebook-square"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-google-plus-square"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-            <?php include 'footer.php'; ?>
         </div>
     </div>
-    <!--   -->
-    <!-- <div class="fixed-plugin">
+</div>
+<?php include 'footer.php'; ?>
+</div>
+</div>
+<!--   -->
+<!-- <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
             <i class="fa fa-cog fa-2x"> </i>

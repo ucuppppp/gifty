@@ -48,7 +48,7 @@ include '../function.php'
                 </div>
                 <ul class="nav">
                     <li>
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link" href="../">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>User Profile</p>
                         </a>

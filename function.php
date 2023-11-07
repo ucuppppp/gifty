@@ -2,11 +2,12 @@
 
 $conn = mysqli_connect('localhost', 'root', '', 'giftshop') or die;
 
-function query($query) {
+function query($query)
+{
     global $conn;
     $result = mysqli_query($conn, $query);
     $rows = [];
-    while($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
     };
     return $rows;
@@ -14,39 +15,42 @@ function query($query) {
     // return $row;
 }
 
-function singkat_angka($n, $presisi=1) {
-	if ($n < 900) {
-		$format_angka = number_format($n, $presisi);
-		$simbol = '';
-	} else if ($n < 900000) {
-		$format_angka = number_format($n / 1000, $presisi);
-		$simbol = 'k';
-	} else if ($n < 900000000) {
-		$format_angka = number_format($n / 1000000, $presisi);
-		$simbol = 'M';
-	} else if ($n < 900000000000) {
-		$format_angka = number_format($n / 1000000000, $presisi);
-		$simbol = 'B';
-	} else {
-		$format_angka = number_format($n / 1000000000000, $presisi);
-		$simbol = 'T';
-	}
- 
-	if ( $presisi > 0 ) {
-		$pisah = '.' . str_repeat( '0', $presisi );
-		$format_angka = str_replace( $pisah, '', $format_angka );
-	}
-	
-	return $format_angka . $simbol;
-}
- 
-function logout($data) {
-    session_unset();
-    session_destroy();
-    header('Location: /login/');
+function singkat_angka($n, $presisi = 1)
+{
+    if ($n < 900) {
+        $format_angka = number_format($n, $presisi);
+        $simbol = '';
+    } else if ($n < 900000) {
+        $format_angka = number_format($n / 1000, $presisi);
+        $simbol = 'k';
+    } else if ($n < 900000000) {
+        $format_angka = number_format($n / 1000000, $presisi);
+        $simbol = 'M';
+    } else if ($n < 900000000000) {
+        $format_angka = number_format($n / 1000000000, $presisi);
+        $simbol = 'B';
+    } else {
+        $format_angka = number_format($n / 1000000000000, $presisi);
+        $simbol = 'T';
+    }
+
+    if ($presisi > 0) {
+        $pisah = '.' . str_repeat('0', $presisi);
+        $format_angka = str_replace($pisah, '', $format_angka);
+    }
+
+    return $format_angka . $simbol;
 }
 
-function registration($data) {
+function logout($data)
+{
+    session_unset();
+    session_destroy();
+    header('Location: __DIR__/login/');
+}
+
+function registration($data)
+{
     global $conn;
     $name = htmlspecialchars($data['name']);
     $username = strtolower(stripslashes($data['username']));
@@ -58,7 +62,7 @@ function registration($data) {
     $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
 
 
-    if(mysqli_fetch_assoc($result)) {
+    if (mysqli_fetch_assoc($result)) {
         echo "<script>
             alert('username sudah digunakan!')
             </script>";
@@ -73,41 +77,35 @@ function registration($data) {
             </script>";
         return false;
     } else {
-    
-    $pw = password_hash($password, PASSWORD_BCRYPT);
 
-    $query = "INSERT INTO user
+        $pw = password_hash($password, PASSWORD_BCRYPT);
+
+        $query = "INSERT INTO user
               VALUES (NULL, '$name', '$username', '$email', '$pw', DEFAULT)";
 
-    mysqli_query($conn, $query);
+        mysqli_query($conn, $query);
 
-    return mysqli_affected_rows($conn);
-
-}
+        return mysqli_affected_rows($conn);
+    }
 };
 
-if(isset($_GET['logout'])) {
-	$logout = $_GET['logout'];
-	logout($logout);
-  
-  }
+if (isset($_GET['logout'])) {
+    $logout = $_GET['logout'];
+    logout($logout);
+}
 
-if(isset($_GET['deleteproduct'])) {
+if (isset($_GET['deleteproduct'])) {
     $id = $_GET['deleteproduct'];
-    $result = mysqli_query($conn,"DELETE FROM product WHERE idProduct = '$id'");
-    if($result) {
+    $result = mysqli_query($conn, "DELETE FROM product WHERE idProduct = '$id'");
+    if ($result) {
         echo "<script>
              alert('data berhasil di hapus')
              document.location.href = 'table.php'
              </script>";
     } else {
-            echo "<script>
+        echo "<script>
                  alert('data gagal di hapus')
                  document.location.href = 'table.php'
                  </script>";
-            }
     }
-    
-
-
-?>
+}

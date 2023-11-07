@@ -4,7 +4,7 @@ include '../function.php';
 $page = 'Login';
 
 
-if(isset($_POST['login'])) {
+if (isset($_POST['login'])) {
 
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -13,21 +13,22 @@ if(isset($_POST['login'])) {
 
     $result = mysqli_query($conn, $query);
     // cek username
-    if(mysqli_num_rows($result) === 1) {
+    if (mysqli_num_rows($result) === 1) {
         // cek password
         $row = mysqli_fetch_assoc($result);
-       if (password_verify($password, $row['password'])) {
-        $_SESSION["login"] = true;
-        $_SESSION['name'] = $row['nameUser'];
-        $_SESSION['username'] = $row['userName'];
-        $_SESSION['roleId'] = $row['roleId'];
-        $_SESSION['bio'] = $row['bio'];
-        if ($_SESSION['roleId'] == 1) {
-        header('Location: ../admin/');
+        if (password_verify($password, $row['password'])) {
+            $_SESSION["login"] = true;
+            $_SESSION['name'] = $row['nameUser'];
+            $_SESSION['username'] = $row['userName'];
+            $_SESSION['roleId'] = $row['roleId'];
+            $_SESSION['bio'] = $row['bio'];
+            if ($_SESSION['roleId'] == 1) {
+                header('Location: ../admin/');
+            } else {
+                header('Location: ../index.php');
+            }
         }
-        header('Location: ../index.php');
-       }
-    } 
+    }
     $error = true;
 }
 
@@ -36,6 +37,7 @@ if(isset($_POST['login'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,11 +45,11 @@ if(isset($_POST['login'])) {
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <div class="glassmorphism-box login-box">
-        <span><img src="../images/favicon.png" alt=""
-        style="width: 60px;"></span>
+            <span><img src="../images/favicon.png" alt="" style="width: 60px;"></span>
             <h2>Login</h2>
             <form method="post" action="">
                 <input type="text" id="username" name="username" placeholder="Username" required>
@@ -58,4 +60,5 @@ if(isset($_POST['login'])) {
         </div>
     </div>
 </body>
+
 </html>
