@@ -302,7 +302,7 @@ input:focus {
 }
 
 .page-header .filter:after {
-    background: transparent linear-gradient(to bottom, #9368e9 0%, #943bea 100%) repeat scroll 0 0/150% 150%;
+    background: transparent linear-gradient(to bottom, #f89cab 0%, #f89cab 100%) repeat scroll 0 0/150% 150%;
     content: "";
     display: block;
     height: 100%;
@@ -584,13 +584,13 @@ body>.navbar-collapse:before {
 
 .sidebar:after,
 body>.navbar-collapse:after {
-    background: #9368E9;
-    background: -moz-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9368E9), color-stop(100%, #943bea));
-    background: -webkit-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -o-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -ms-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
+    background: #f89cab;
+    background: -moz-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f89cab), color-stop(100%, #f89cab));
+    background: -webkit-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: -o-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: -ms-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: linear-gradient(to bottom, #f89cab 0%, #f89cab 100%);
     background-size: 150% 150%;
     z-index: 3;
     opacity: 1;
@@ -677,13 +677,13 @@ body>.navbar-collapse[data-color="red"]:after {
 
 .sidebar[data-color="purple"]:after,
 body>.navbar-collapse[data-color="purple"]:after {
-    background: #9368E9;
-    background: -moz-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9368E9), color-stop(100%, #943bea));
-    background: -webkit-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -o-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -ms-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
+    background: #f89cab;
+    background: -moz-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f89cab), color-stop(100%, #f89cab));
+    background: -webkit-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: -o-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: -ms-linear-gradient(top, #f89cab 0%, #f89cab 100%);
+    background: linear-gradient(to bottom, #f89cab 0%, #f89cab 100%);
     background-size: 150% 150%;
 }
 
@@ -3269,12 +3269,12 @@ Copyright (c) 2015 Daniel Eden
 .ct-series-d .ct-line,
 .ct-series-d .ct-bar,
 .ct-series-d .ct-slice-donut {
-    stroke: #9368E9;
+    stroke: #f89cab;
 }
 
 .ct-series-d .ct-slice-pie,
 .ct-series-d .ct-area {
-    fill: #9368E9;
+    fill: #f89cab;
 }
 
 .ct-series-e .ct-point,

@@ -58,7 +58,9 @@ $result = mysqli_query($conn, $query);
     <p class="desc"><?= $data['description'] ?></p>
     <?php endforeach; ?>
     <div class="buttons">
-      <button class="add">Add to Cart</button>
+      <form action="../cart/addCart.php?id=<?= $data['idProduct'] ?>" method="post" style="display: inline;" name="addCart" id="addCart">
+        <button class="add" type="submit"  name="addCart" id="addCart" >Add to Cart</button>
+      </form>
       <button class="like"><span>♥</span></button>
     </div>
     <a href="../shop.php"><button style="margin-top: 80px; margin: left 20px;">Back</button></a>

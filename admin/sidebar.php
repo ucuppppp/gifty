@@ -17,6 +17,7 @@ if ($_SESSION['roleId'] != 1 || !isset($_SESSION['login'])) {
     <meta charset="utf-8" />
     <!-- <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png"> -->
     <!-- <link rel="icon" type="image/png" href="assets/img/favicon.ico"> -->
+    <link rel="stylesheet" href="profile.scss">
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Giftyy | <?= $page; ?></title>
@@ -40,8 +41,9 @@ if ($_SESSION['roleId'] != 1 || !isset($_SESSION['login'])) {
 
         Tip 2: you can also add an image using data-image tag
     -->
-            <div class="sidebar-wrapper">
-                <div class="logo" style="display: flex; align-items:center; text-align:center; cursor:pointer;">
+            <div class="sidebar-wrapper" style="background: rgb(248,156,171);
+background: linear-gradient(175deg, rgba(248,156,171,1) 0%, rgba(222,194,149,1) 91%);">
+                <div class="logo" style="display: flex; align-items:center; text-align:center; cursor:pointer; ">
                     <a href="../index.php">
                         <img src="../images/favicon.png" alt="" style="width: 40px;">
                     </a>

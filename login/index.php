@@ -18,6 +18,8 @@ if (isset($_POST['login'])) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row['password'])) {
             $_SESSION["login"] = true;
+            $_SESSION['userId'] = $row['userId'];
+            $_SESSION['profilePicture'] = $row['profilePicture'];
             $_SESSION['name'] = $row['nameUser'];
             $_SESSION['username'] = $row['userName'];
             $_SESSION['roleId'] = $row['roleId'];

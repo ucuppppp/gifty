@@ -117,7 +117,7 @@
       <?php foreach($result as $data) : ?>
         <div class="col-sm-6 col-md-4 col-lg-3">        
           <div class="box">
-            <a href="">
+            <a href="product/?id=<?= $data['idProduct']; ?>">
               <div class="img-box">
                 <img src="images/<?= $data['image']; ?>" alt="">
               </div>

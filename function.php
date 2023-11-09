@@ -146,10 +146,19 @@ function edit($data) {
 
 function add($data) {
     global $conn;
-    $image = htmlspecialchars($data['image']);
+    
     $name = htmlspecialchars($data['name']);
     $type = htmlspecialchars($data['type']);
     $description = htmlspecialchars($data['description']);
+
+
+
+    $image = upload();
+    if( !$image ) {
+        return false;
+    }
+
+
     if(is_numeric($data['price']) == true) {
         $price = htmlspecialchars($data['price']);
     } else {
@@ -169,3 +178,83 @@ function add($data) {
 
     return mysqli_affected_rows($conn);
 } 
+
+
+function upload() {
+    $name = $_FILES['image']['name'];
+    $size = $_FILES['image']['size'];
+    $error = $_FILES['image']['error'];
+    $tmpName = $_FILES['image']['tmp_name'];
+
+    // cek ekstensi gambar
+    // array yang berisi ekstensi valid
+    $validExtention = ['jpg','jpeg','png','heic'];
+    // memisahkan ekstensi dan nama 
+    $extentionSplit = explode('.', $name);
+    // mengambil akhir dari nama ekstensi setelah titik lalu ubah menjadi huruf kecil
+    // agar valid dengan array ekstensi
+    $extentionImage = strtolower(end($extentionSplit));
+
+    if( !in_array($extentionImage, $validExtention)) {
+        echo "<script>
+            alert('Yang anda upload bukan gambar');
+            </script>";
+        return false;
+    }
+    
+    // generate nama gambar baru
+    $newName = uniqid();
+    $newName .= '.';
+    $newName .= $extentionImage;
+
+
+    move_uploaded_file($tmpName, 'C:/laragon/www/catalog/images/'.$newName);
+    
+    return $newName;
+
+}
+
+function uploadPp() {
+    $name = $_FILES['image']['name'];
+    $size = $_FILES['image']['size'];
+    $error = $_FILES['image']['error'];
+    $tmpName = $_FILES['image']['tmp_name'];
+
+    // cek ekstensi gambar
+    // array yang berisi ekstensi valid
+    $validExtention = ['jpg','jpeg','png','heic'];
+    // memisahkan ekstensi dan nama 
+    $extentionSplit = explode('.', $name);
+    // mengambil akhir dari nama ekstensi setelah titik lalu ubah menjadi huruf kecil
+    // agar valid dengan array ekstensi
+    $extentionImage = strtolower(end($extentionSplit));
+
+    if( !in_array($extentionImage, $validExtention)) {
+        echo "<script>
+            alert('Yang anda upload bukan gambar');
+            </script>";
+        return false;
+    }
+    
+    // generate nama gambar baru
+    $newName = uniqid();
+    $newName .= '.';
+    $newName .= $extentionImage;
+
+
+    move_uploaded_file($tmpName, 'C:/laragon/www/catalog/admin/assets/img/profilePicture/'.$newName);
+    
+    return $newName;
+
+}
+
+function delete($data) {
+    global $conn;
+    $id = $_GET['deleteproduct'];
+    $query = "DELETE FROM product WHERE idProduct = '$id'";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+
+}

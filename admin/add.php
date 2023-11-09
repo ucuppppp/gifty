@@ -4,6 +4,8 @@ session_start();
 $page = 'Add';
 include '../function.php';
 
+
+
 if ($_SESSION['roleId'] != 1 || !isset($_SESSION['login'])) {
     header('Location: ../');
 }
@@ -59,13 +61,13 @@ if(isset($_POST['submit'])) {
     <h1>Tambah </h1>
     <div class="container">
         <table>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <tr>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td></td>
+                <td><label for="image">Image : </label></td>
                 <td><input type="file" name="image" id="image"></td>
             </tr>
         <tr>

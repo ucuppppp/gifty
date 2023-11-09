@@ -12,15 +12,21 @@
 =========================================================
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
-<?php
 
 
 
 
+
+
+
+
+<?php include 'sidebar.php';
+
+ $username = $_SESSION['username'];
+
+$req = query("SELECT * FROM user WHERE userName = '$username' ") ;
 
 ?>
-
-<?php include 'sidebar.php' ?>
 <!-- End Navbar -->
 <div class="content">
     <div class="container-fluid">
@@ -31,17 +37,20 @@
                         <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
                     </div>
                     <div class="card-body">
+                        <?php foreach($req as $data) ?>
                         <div class="author">
-                            <a href="#">
-                                <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="...">
-                                <h5 class="title"><?= $_SESSION['name'] ?></h5>
-                            </a>
+                            <img class="avatar border-gray" src="assets/img/profilePicture/<?= $data['profilePicture']; ?>" alt="...">
+                            <br>
+                            <a href="pp.php?name=<?= $data['userName']; ?>"><button style="background: rgb(248,156,171);
+background: linear-gradient(175deg, rgba(248,156,171,1) 0%, rgba(222,194,149,1) 91%); border: solid 1px; border-radius: 20px; padding: 5px;">Change Picture</button></a>
+                            <br>
+                            <h5 class="title"><?= $data['nameUser'] ?></h5>
                             <p class="description">
-                                <?= $_SESSION['username']; ?>
+                                <?= $data['userName']; ?>
                             </p>
                         </div>
                         <p class="description text-center">
-                            <?= $_SESSION['bio']; ?>
+                            <?= $data['bio']; ?>
                         </p>
                     </div>
                     <hr>
