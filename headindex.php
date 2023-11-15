@@ -100,7 +100,7 @@ include 'function.php';
             </a>
             <?php endif; ?>
             <?php } ?>
-            <a href="">
+            <a href="cart/">
               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             </a>
             <form class="form-inline ">

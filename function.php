@@ -25,13 +25,13 @@ function singkat_angka($n, $presisi = 1)
         $simbol = '';
     } else if ($n < 900000) {
         $format_angka = number_format($n / 1000, $presisi);
-        $simbol = 'k';
+        $simbol = 'Rb';
     } else if ($n < 900000000) {
         $format_angka = number_format($n / 1000000, $presisi);
-        $simbol = 'M';
+        $simbol = 'Jt';
     } else if ($n < 900000000000) {
         $format_angka = number_format($n / 1000000000, $presisi);
-        $simbol = 'B';
+        $simbol = 'M';
     } else {
         $format_angka = number_format($n / 1000000000000, $presisi);
         $simbol = 'T';

@@ -3,6 +3,7 @@ session_start();
 $page = 'Product';
 include '../function.php';
 
+
 $id = $_GET['id'];
 
 $query = "SELECT * FROM product
@@ -10,7 +11,38 @@ $query = "SELECT * FROM product
       WHERE product.idProduct = '$id'";
 
 $result = mysqli_query($conn, $query);
+$user = $_SESSION['userId'];
 
+if(isset($_GET['idCart']) && !empty($_GET['idCart'])) {
+  $idProduct = $_GET['idCart'];
+  
+  // Periksa apakah produk sudah ada di keranjang belanja
+  $sql_check = "SELECT * FROM cart WHERE idUser = $user AND idProduct = $idProduct";
+  $result_check = $conn->query($sql_check);
+  
+  if ($result_check->num_rows > 0) {
+      // Jika produk sudah ada di keranjang, tingkatkan jumlah
+      $row = $result_check->fetch_assoc();
+      $new_quantity = $row['quantity'] + 1;
+      $update_sql = "UPDATE cart SET quantity = $new_quantity WHERE idUser = $user AND idProduct = $idProduct";
+      if ($conn->query($update_sql) === true) {
+          echo "<script>alert('Jumlah produk diperbarui di keranjang.')
+                </script>";
+      } else {
+          echo "Error: " . $update_sql . "<br>" . $conn->error;
+      }
+  } else {
+      // Jika produk belum ada di keranjang, tambahkan ke keranjang
+      
+      $insert_sql = "INSERT INTO cart (idProduct, idUser, quantity) VALUES ($idProduct, $user, 1)";
+      if ($conn->query($insert_sql) === true) {
+          echo "<script>alert('Produk ditambahkan ke keranjang.')
+          </script>";
+      } else {
+          echo "Error: " . $insert_sql . "<br>" . $conn->error;
+      }
+  }
+}
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +90,7 @@ $result = mysqli_query($conn, $query);
     <p class="desc"><?= $data['description'] ?></p>
     <?php endforeach; ?>
     <div class="buttons">
-      <form action="../cart/addCart.php?id=<?= $data['idProduct'] ?>" method="post" style="display: inline;" name="addCart" id="addCart">
+      <form action="../product/?id=<?= $data['idProduct'] ?>&idCart=<?= $data['idProduct'] ?>" method="post" style="display: inline;" name="addCart" id="addCart">
         <button class="add" type="submit"  name="addCart" id="addCart" >Add to Cart</button>
       </form>
       <button class="like"><span>♥</span></button>

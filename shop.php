@@ -52,8 +52,8 @@ include 'header.php';
         <?php endforeach; ?>
       </div>
       <div class="btn-box">
-        <a href="">
-          View All Products
+        <a href="/">
+          View less
         </a>
       </div>
     </div>
