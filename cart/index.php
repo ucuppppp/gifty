@@ -2,6 +2,10 @@
 session_start();
 include '../function.php';
 
+if(!isset($_SESSION['login'])) {
+    header('Location: ../login/');
+}
+
 $page = 'Cart';
 $user = $_SESSION['userId'];
 
@@ -10,6 +14,20 @@ $query = query("SELECT * FROM cart
                 INNER JOIN product ON cart.idProduct = product.idProduct
                 WHERE idUser = '$user'");
 
+if(isset($_GET['cart_delete'])) {
+    mysqli_query($conn, "DELETE FROM cart WHERE idProduct = $_GET[cart_delete] AND idUser = $user");
+    header("Refresh:0; url=/cart/");
+}
+
+if(isset($_POST['plus'])) {
+   $plus = $_POST['quantity'] + 1;
+
+   mysqli_query($conn,"UPDATE cart SET quantity = $plus WHERE idProduct = $_POST[userCart] AND idUser = $user");
+
+} elseif(isset($_POST['minus'])) {
+    $minus = $_POST['quantity'] + 1;
+    mysqli_query($conn,"UPDATE cart SET quantity = $minus WHERE idProduct = $_POST[userCart] AND idUser = $user");
+}
 
 ?>
 
@@ -64,10 +82,19 @@ $query = query("SELECT * FROM cart
                             </div>
                             <div class="col">Rp.<?= singkat_angka($item['price']); ?></div>
                             <div class="col">
-                                <a href="#">-</a><a href="#" class="border"><?= $item['quantity']; ?></a><a href="#">+</a>
+                                <form action="" method="post">
+                                    <input type="submit" name="minus" id="minus" value="-" style="width: 5px;">
+                                        <input type="text" name="quantity" value="<?= $item['quantity']; ?>" >
+                                        <input type="hidden" name="userCart" id="userCart" value="<?= $item['idUser'] ?>">
+                                    <input type="submit" name="plus" id="plus" value="+" style="width: 5px;">
+                                </form>
                             </div>
                             <div class="subtotal" style="margin-right: 15px;"><?= 'Rp. '.number_format($subtotal, 2, ",","."); ?></div>
-                            <div><span class="close">&#10005;</span></div>
+                            <div>
+                                <a href="?cart_delete=<?= $item['idProduct'] ?>">
+                                    <span class="close">&#10005;</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach;
@@ -101,7 +128,7 @@ $query = query("SELECT * FROM cart
                     <select>
                         <option class="text-muted">Standard-Delivery- &euro;5.00</option>
                     </select>
-                    <p>GIVE CODE</p>
+                    <p>GIVE CODE</p
                     <input id="code" placeholder="Enter your code">
                 </form> -->
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
