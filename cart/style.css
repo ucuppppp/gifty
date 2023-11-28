@@ -90,6 +90,8 @@ hr{
 }
 form{
     padding: 2vh 0;
+    display: flex;
+    justify-content: center;
 }
 select{
     border: 1px solid rgba(0, 0, 0, 0.137);

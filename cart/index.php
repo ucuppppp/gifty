@@ -7,7 +7,7 @@ if(!isset($_SESSION['login'])) {
 }
 
 $page = 'Cart';
-$user = $_SESSION['userId'];
+$user = (int)$_SESSION['userId'];
 
 $query = query("SELECT * FROM cart
                 INNER JOIN user ON cart.idUser = user.userId
@@ -19,14 +19,34 @@ if(isset($_GET['cart_delete'])) {
     header("Refresh:0; url=/cart/");
 }
 
-if(isset($_POST['plus'])) {
-   $plus = $_POST['quantity'] + 1;
+if(isset($_POST['plus']) || isset($_POST['minus'])) {
+    $productId = (int)$_POST['productId'];
+    $quantity = (int)$_POST['quantity'];
 
-   mysqli_query($conn,"UPDATE cart SET quantity = $plus WHERE idProduct = $_POST[userCart] AND idUser = $user");
+    if(isset($_POST['plus'])) {
+        $plus = $quantity + 1;
+    } elseif(isset($_POST['minus']) && $quantity >= 1) {
+        $minus = $quantity - 1;
+        if($quantity <= 1 ) {
+            $minus = 1;
+        }
 
-} elseif(isset($_POST['minus'])) {
-    $minus = $_POST['quantity'] + 1;
-    mysqli_query($conn,"UPDATE cart SET quantity = $minus WHERE idProduct = $_POST[userCart] AND idUser = $user");
+    }
+
+    if(isset($plus)) {
+        $result = $conn->query("UPDATE cart SET quantity = $plus WHERE idProduct = $productId AND idUser = $user");
+        if (!$result) {
+            die('Error: ' . mysqli_error($conn));
+        }
+    } elseif(isset($minus)) {
+        $result = $conn->query("UPDATE cart SET quantity = $minus WHERE idProduct = $productId AND idUser = $user");
+        
+        if (!$result) {
+            die('Error: ' . mysqli_error($conn));
+        }
+    }
+
+    header("Refresh:0; url=/cart/");
 }
 
 ?>
@@ -55,7 +75,7 @@ if(isset($_POST['plus'])) {
                         <div class="col">
                             <h4><b>Cart</b></h4>
                         </div>
-                        <div class="col align-self-center text-right text-muted"><? ?> items</div>
+                        <div class="col align-self-center text-right text-muted">items</div>
                     </div>
                 </div>
                 <?php
@@ -83,15 +103,15 @@ if(isset($_POST['plus'])) {
                             <div class="col">Rp.<?= singkat_angka($item['price']); ?></div>
                             <div class="col">
                                 <form action="" method="post">
-                                    <input type="submit" name="minus" id="minus" value="-" style="width: 5px;">
+                                    <input type="submit" name="minus" id="minus" value="-" style="width: 7px;">
                                         <input type="text" name="quantity" value="<?= $item['quantity']; ?>" >
-                                        <input type="hidden" name="userCart" id="userCart" value="<?= $item['idUser'] ?>">
-                                    <input type="submit" name="plus" id="plus" value="+" style="width: 5px;">
+                                        <input type="hidden" name="productId" id="productId" value="<?= $item['idProduct'] ?>">
+                                    <input type="submit" name="plus" id="plus" value="+" style="width: 7px;">
                                 </form>
                             </div>
                             <div class="subtotal" style="margin-right: 15px;"><?= 'Rp. '.number_format($subtotal, 2, ",","."); ?></div>
                             <div>
-                                <a href="?cart_delete=<?= $item['idProduct'] ?>">
+                                <a href="?cart_delete=<?= $item['idProduct'] ?>" onclick="return confirm('Yakin menghapus barang belanja ini?')">
                                     <span class="close">&#10005;</span>
                                 </a>
                             </div>

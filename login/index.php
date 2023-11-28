@@ -53,6 +53,9 @@ if (isset($_POST['login'])) {
         <div class="glassmorphism-box login-box">
             <span><img src="../images/favicon.png" alt="" style="width: 60px;"></span>
             <h2>Login</h2>
+            <?php if(isset($error)) {
+             echo "<p style='color:red;' >username atau password salah</p>";
+             } ?>
             <form method="post" action="">
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>

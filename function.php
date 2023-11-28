@@ -233,6 +233,7 @@ function uploadPp() {
         echo "<script>
             alert('Yang anda upload bukan gambar');
             </script>";
+            exit();
         return false;
     }
     
@@ -243,6 +244,8 @@ function uploadPp() {
 
 
     move_uploaded_file($tmpName, 'C:/laragon/www/catalog/admin/assets/img/profilePicture/'.$newName);
+
+    header('Location: ../admin/');
     
     return $newName;
 

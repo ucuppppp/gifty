@@ -54,11 +54,11 @@
             <div class="info_link-box">
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span> Gb road 123 london Uk </span>
+                <span>Jl. A. Yani No.2, Winong, Kec. Pati, Kabupaten Pati, Jawa Tengah 59112</span>
               </a>
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>+01 12345678901</span>
+                <span>+62 88232383769</span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
